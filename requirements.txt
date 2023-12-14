@@ -1,0 +1,5 @@
+Flask==2.0.1
+Flask-SQLAlchemy
+PyMySQL
+Flask-MySQLdb
+Werkzeug==2.2.2
