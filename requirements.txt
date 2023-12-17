@@ -1,5 +1,9 @@
-Flask==2.0.1
-Flask-SQLAlchemy
+Flask
 PyMySQL
 Flask-MySQLdb
+Flask-SQLAlchemy==3.0.3
+Flask-HTTPAuth
+PyJWT
+flask-jwt-extended
+flask-restx
 Werkzeug==2.2.2
