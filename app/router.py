@@ -179,8 +179,9 @@ class UpdateTask(Resource):
                     'required.',
                 'schema': {
                     'type': 'object',
+                    'required': ['title'],
                     'properties': {
-                        'name': {
+                        'title': {
                             'type': 'string'
                         },
                         'description': {
@@ -191,7 +192,57 @@ class UpdateTask(Resource):
                         },'done': {
                             'type': 'boolean'
                         }
-                    }}}})
+                    }}},
+                "response": { 
+                    200: {
+                        'description': 'Success',
+                        'schema': {
+                            'type': 'object',
+                            'properties': {
+                                'message': {
+                                    'type': 'string',
+                                    'example': 'success'
+                                },
+                                'task': {
+                                    'type': 'object',
+                                    'properties': {
+                                        'id': {
+                                            'type': 'integer'
+                                        },
+                                        'user_id': {
+                                            'type': 'integer'
+                                        },
+                                        'title': {
+                                            'type': 'string'
+                                        },
+                                        'description': {
+                                            'type': 'string'
+                                        },
+                                        'urgency': {
+                                            'type': 'string'
+                                        },
+                                        'done': {
+                                            'type': 'boolean'
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    404: {
+                        'description': 'Task not found',
+                        'schema': {
+                            'type': 'object',
+                            'properties': {
+                                'message': {
+                                    'type': 'string',
+                                    'example': 'task not found'
+                                }
+                            }
+                }}
+        }}
+        
+    )
     @jwt_required()
     def put(self, id):
         """Edit a task"""
