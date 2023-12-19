@@ -1,15 +1,5 @@
 version: '3'
 services:
-  taskmanangementapi:
-    build: .
-    ports:
-        - '5000:5000'
-    volumes:
-        - ./app:/app
-    networks:
-      - backend
-    depends_on:
-      - mysql
   mysql:
     image: mysql:8.0
     container_name: mysql
@@ -22,6 +12,25 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend
+
+  taskmanangementapi:
+    build: .
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./app:/app
+    networks:
+      - backend
+    depends_on:
+      wait-for-db:
+        condition: service_completed_successfully  
+  wait-for-db:
+    image: atkrad/wait4x
+    depends_on:
+      - mysql
+    command: tcp mysql:3306 -t 30s -i 250ms
     networks:
       - backend
 networks:

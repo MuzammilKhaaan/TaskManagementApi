@@ -7,3 +7,4 @@ PyJWT
 flask-jwt-extended
 flask-restx
 Werkzeug==2.2.2
+waitress
