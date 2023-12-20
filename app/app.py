@@ -21,9 +21,9 @@ setattr(app, 'db', db)
 
 
 rest_api = Api(app=app, version='1.0',
-               title='Flask REST API with Flask-RESTX, Flask-SQLAlchemy, JWT Authentication, and MySQL',
-               description="This API provides a robust platform for user management and task t"
-               "racking. It features secure user authentication using JWT (JSON Web Tokens)," 
-               "and CRUD operations for users and tasks stored in a MySQL database")
+               title='Task Management',
+               description="This API provides user management and task t"
+               "racking. It features user authentication using JWT ," 
+               "and CRUD operations for tasks stored in a MySQL database")
 user_space = rest_api.namespace('users', description="CRUD User")
 task_space = rest_api.namespace('tasks', description="CRUD Task")
